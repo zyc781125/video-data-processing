@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>视频片段筛选器</title><link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header><div><h1>视频片段筛选器</h1><p id="projectSummary">选择目录后开始</p></div><div id="counts" class="counts"></div></header>
+<main>
+  <section class="setup panel"><label>输入目录 <input id="inputDir" placeholder="/path/to/source"></label><label>输出目录 <input id="outputDir" placeholder="/path/to/processed_data"></label><button id="scanBtn">扫描目录</button><span id="setupError" class="error"></span></section>
+  <div class="workspace">
+    <aside class="panel"><div class="listHeader"><h2>视频列表</h2><select id="filter"><option value="all">全部</option><option value="pending">待处理</option><option value="editing">编辑中</option><option value="completed">已完成</option><option value="failed">失败</option><option value="rejected">已拒绝</option><option value="no_segment">无片段</option></select></div><div id="videoList" class="videoList"></div></aside>
+    <section class="editor panel"><div class="videoHeading"><div><h2 id="videoName">未选择视频</h2><p id="videoInfo"></p></div><span id="statusBadge" class="badge">待处理</span></div><video id="player" controls preload="metadata"></video><div class="framebar"><span>当前帧 <strong id="frameNo">-</strong></span><span>时间 <strong id="timestamp">-</strong></span><span>总帧数 <strong id="totalFrames">-</strong></span><span>帧率 <strong id="fps">-</strong></span></div><div class="selection"><div><span>起点</span><strong id="startValue">未设置</strong><button data-action="start">设置起点 (1)</button></div><div><span>终点</span><strong id="endValue">未设置</strong><button data-action="end">设置终点 (2)</button></div><button class="primary" data-action="add">添加片段 (A)</button></div><div id="message" class="message">播放或拖动进度条，设置起点与终点。</div><h3>已添加片段</h3><div id="segments" class="segments"></div><div class="actions"><button data-action="reject">标记拒绝</button><button data-action="empty">标记无片段</button><button class="primary" data-action="export">提交导出 (Enter)</button></div><p class="hint">快捷键：Space 播放/暂停 · R 从头播放 · ←/→ 前后帧 · 1 起点 · 2 终点 · A 添加 · Enter 导出</p></section>
+  </div>
+</main><script src="/static/app.js"></script>
+</body></html>
